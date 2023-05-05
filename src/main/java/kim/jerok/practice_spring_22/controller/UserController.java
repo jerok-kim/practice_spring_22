@@ -2,16 +2,20 @@ package kim.jerok.practice_spring_22.controller;
 
 import kim.jerok.practice_spring_22.config.annotation.LoginUserAop;
 import kim.jerok.practice_spring_22.config.annotation.LoginUserResolver;
+import kim.jerok.practice_spring_22.config.exception.MyValidationException;
 import kim.jerok.practice_spring_22.dto.JoinInDto;
 import kim.jerok.practice_spring_22.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -47,7 +51,7 @@ public class UserController {
         System.out.println(user.getUsername());
         return "v3 username : " + user.getUsername();
     }
-
+    
     // Valid AOP 발동
     @PostMapping("/valid")
     public String join(@Valid JoinInDto joinInDto, BindingResult bindingResult) {

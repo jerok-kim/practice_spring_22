@@ -8,9 +8,13 @@ import java.util.Map;
 public class MyValidationException extends RuntimeException {
 
     private Map<String, String> errorMap;
+    private String message;
 
     public MyValidationException(Map<String, String> errorMap) {
         this.errorMap = errorMap;
     }
 
+    public MyValidationException(String message) {
+        this.message = message;
+    }
 }
